@@ -13,6 +13,10 @@ RUN echo "deb http://packages.elasticsearch.org/elasticsearch/1.0/debian stable 
 RUN apt-get update
 RUN apt-get install -y elasticsearch
 
+RUN /usr/share/elasticsearch/bin/plugin -install com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/1.7.4
+RUN /usr/share/elasticsearch/bin/plugin -install jettro/elasticsearch-gui
+
+
 # Prevent elasticsearch calling `ulimit`.
 RUN sed -i 's/MAX_OPEN_FILES=/# MAX_OPEN_FILES=/g' /etc/init.d/elasticsearch
 
